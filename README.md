@@ -11,37 +11,35 @@ The package relies the following software.
 
 After installing the packages, run `scons program=vcc variant=optimized` to build.
 
-## Running
+## Compile & Running
 
-This package contains 5 different algorithms: **Chalupa**, **Redu**, **ReduVCC**, **BnR**, and **EdgeBnR**, which can be run as follows:
+On a Linux system, **RECIP** can be compiled and run as follows:
 
-**Chalupa**
+**Compiling**
 
-`./optimized/vcc --preconfiguration=fsocial --k=2 --mis=<independent set size> --run_type="Chalupa" <input graph>`
+`g++ main.cpp Graph.cpp -O2 -m64 -O -fPIC -fno-strict-aliasing -fexceptions -DNDEBUG -DIL_STD     -I/opt/ibm/ILOG/CPLEX_Studio1271/cplex/include     -I/opt/ibm/ILOG/CPLEX_Studio1271/concert/include     -L/opt/ibm/ILOG/CPLEX_Studio1271/cplex/lib/x86-64_linux/static_pic     -L/opt/ibm/ILOG/CPLEX_Studio1271/concert/lib/x86-64_linux/static_pic     -o recip -lconcert -lilocplex -lcplex -lm -lpthread -w`
 
-**Redu**
-`./optimized/vcc --preconfiguration=fsocial --k=2 --run_type="Redu" <input graph>`
+**Running**
 
-**ReduVCC**
-`./optimized/vcc --preconfiguration=fsocial --k=2 --mis=<independent set size> --run_type="ReduVCC" <input graph>`
+`./main <input graph> <output file> k`
 
-**BnR**
-`./optimized/vcc --preconfiguration=fsocial --k=2 --run_type="bnr" <input graph>`
+- `<input graph>:` a file containing the given graph
+- `<output file>:`  a file containing the default output of CPLEX, the number of nodes, edges after each reduction, and total execution time, etc
+- `k:` interdiction budget as a floating-point number
 
-**EdgeBnr**
-`./optimized/vcc --preconfiguration=fsocial --k=2 --run_type="edge_bnr" <input graph>`
 
-## Input Format
+## Graph Format
 
-ReduVCC uses **The unweighted METIS format**, which consists of
+RECIP uses **DIMACS format**, which consists of
 
-   `<# vertices> <# edges> 1`
+   `p edge <num_nodes> <num_edges>`
 
-   followed by `<# vertices>` lines of space-separated vertices,  where the `i`-th line consists of 
-   all neighbors of `i`. All vertices range from `1` to `<# vertices>`
+   `e <node_1> <node_2>`
 
-Loops and directed edges are not supported.
+**Example :**
 
-## Data Sets
+p edge 3 2
 
-You will find an example graph in the directory `examples`
+e 1 2
+
+e 1 3
