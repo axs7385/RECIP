@@ -1141,13 +1141,14 @@ void lazy_delete()
     deque<int> q;
     for (int i = 0; i < idcnt; ++i)
         if (tri_cnt[i] <= LB - 2)
-            q.push_back(i);
+            q.push_back(i+1);
     while (!q.empty())
     {
         int x = q.front();
         q.pop_front();
         if (x > 0)
         {
+            --x;
             auto [u, v] = idtoedge[x];
             deleted[x] = 1;
             if (ban[u] || ban[v])
@@ -1174,14 +1175,14 @@ void lazy_delete()
                     {
                         --tri_cnt[w];
                         if (tri_cnt[w] <= LB - 2)
-                            q.push_back(w);
+                            q.push_back(w+1);
                     }
                     w = adj[edges[k]] - 1;
                     if (w != -1 && tri_cnt[w] > LB - 2 && !deleted[w])
                     {
                         --tri_cnt[w];
                         if (tri_cnt[w] <= LB - 2)
-                            q.push_back(w);
+                            q.push_back(w+1);
                     }
                 }
             for (int i = pstart[u]; i < pend[u]; ++i)
@@ -1214,13 +1215,12 @@ void lazy_delete()
                             {
                                 --tri_cnt[w];
                                 if (tri_cnt[w] <= LB - 2)
-                                    q.push_back(w);
+                                    q.push_back(w+1);
                             }
                         }
                 }
         }
     }
-
     // for (int i=)
 }
 bool work_lazy(int isclq = 0)
