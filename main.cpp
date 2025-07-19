@@ -1291,7 +1291,7 @@ bool work_lazy(int isclq = 0)
             ept t_start = pstart[i];
             pstart[i] = pos;
             for (ept j = t_start; j < pstart[i + 1]; j++)
-                if (!ban[degree[edges[j]]] && !deleted[edgeid[j]])
+                if (!ban[edges[j]] && !deleted[edgeid[j]])
                 {
                     edges[pos++] = rid[edges[j]];
                 }
@@ -2085,27 +2085,6 @@ int ilp_search()
 }
 int main(int argc, char *argv[])
 {
-    // if (
-    // freopen("./ben/bio/bio-celegans", "r", stdin);
-    // freopen("./ben/soc/soc-brightkite", "r", stdin);
-    // freopen("./ben/soc/soc-BlogCatalog", "r", stdin);
-    // freopen("./ben/soc/soc-epinions", "r", stdin);
-    // freopen("./ben/fb/socfb-UF", "r", stdin);
-    // freopen("./ben/fb/socfb-Texas84", "r", stdin);
-    // freopen("./ben/fb/socfb-CMU", "r", stdin);
-    // freopen("./ben/col/ca-CSphd", "r", stdin);
-    // freopen("./ben/int/ia-email-univ", "r", stdin);
-    // freopen("./ben/int/ia-enron-large", "r", stdin);
-    // freopen("./ben/int/ia-wiki-Talk", "r", stdin);
-    // freopen("./dm2/brock200_1.clq","r",stdin);
-    // freopen("./dm2/brock200_2.clq","r",stdin);
-    // freopen("./dm2/brock200_3.clq","r",stdin);
-    // freopen("./dm2/brock200_4.clq","r",stdin);
-    // freopen("./dm2/c-fat200-1.clq","r",stdin);
-    // freopen("./dm2/c-fat200-2.clq","r",stdin);
-    // freopen("./dm2/c-fat200-5.clq","r",stdin);
-    // freopen("./mydata/cond-mat-2005.mtx","r",stdin);
-    // freopen("in.txt","r",stdin);
     std::ofstream outfile("summary.txt", std::ios::app);
     outfile << std::fixed << std::setprecision(3);
     outfile<<endl;
